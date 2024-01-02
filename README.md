@@ -33,7 +33,7 @@ curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/
 
 ## Toolbar 
 ```xml
-<widget id="org.rd.plugin.gitlab.CreatePullRequest">
+<widget id="org.rd.plugin.codecommit.CreatePullRequest">
     <plugin id="org.rd.plugin.codecommit" site="{site}" type="apps" name="codecommit" file="index.js"/>
     <configuration>
         <useIcon>false</useIcon>
