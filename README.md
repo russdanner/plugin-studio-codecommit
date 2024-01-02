@@ -38,11 +38,12 @@ curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/
     <configuration>
         <useIcon>false</useIcon>
     
-        <repoName>myrepo</projectId>
-        <sourceBranch>a-branch</repoName>
+        <repoName>myrepo</repoName>
+        <sourceBranch>qa</sourceBranch>
         <targetBranch>master</targetBranch>
         <mrTitle>Approve Content Promotion via Studio</mrTitle>
         <createAndApproveMergeRequestLabel>Promote Content</createAndApproveMergeRequestLabel>
     </configuration>
-</widget>
+</widget>                
+              
 ```
