@@ -70,7 +70,7 @@ module.exports = {
         // },
         {
           src: './dist/*',
-          dest: '../../../authoring/static-assets/plugins/org/rd/plugin/uigoodies/apps/uigoodies'
+          dest: '../../../authoring/static-assets/plugins/org/rd/plugin/codecommit/apps/codecommit'
         }
       ]
     })

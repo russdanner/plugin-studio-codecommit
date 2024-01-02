@@ -5748,9 +5748,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"authoring-gitlab-plugin@workspace:.":
+"authoring-codecommit-plugin@workspace:.":
   version: 0.0.0-use.local
-  resolution: "authoring-gitlab-plugin@workspace:."
+  resolution: "authoring-codecommit-plugin@workspace:."
   dependencies:
     prettier: ^2.5.1
   languageName: unknown
@@ -6433,6 +6433,46 @@ __metadata:
   checksum: 44736914aac2160d3d840ed64432a90a3bb72285a0cd6a688eb5cabdf15d15a85eee0915b3f6f2a4659d5075817b1cb577340d3c9cbb47d636d59ab69f819552
   languageName: node
   linkType: hard
+
+"codecommit-components@workspace:^, codecommit-components@workspace:packages/codecommit-components":
+  version: 0.0.0-use.local
+  resolution: "codecommit-components@workspace:packages/codecommit-components"
+  dependencies:
+    "@craftercms/studio-ui": ^1.0.0-rc.3
+    "@emotion/css": ^11.5.0
+    "@emotion/react": ^11.5.0
+    "@emotion/styled": ^11.3.0
+    "@formatjs/cli": ^2.13.12
+    "@mui/icons-material": ^5.10.9
+    "@mui/lab": ^5.0.0-alpha.65
+    "@mui/material": ^5.3.0
+    "@rollup/plugin-commonjs": ^23.0.2
+    "@rollup/plugin-json": ^5.0.1
+    "@rollup/plugin-node-resolve": ^15.0.1
+    "@rollup/plugin-replace": ^5.0.1
+    "@types/node": ^16.7.13
+    "@types/react": ^18.0.22
+    "@types/react-dom": ^18.0.7
+    npm-run-all: ^4.1.5
+    prettier: ^2.5.1
+    query-string: ^6.14.1
+    react: ^18.1.0
+    react-beautiful-dnd: ^13.1.1
+    react-dom: ^18.1.0
+    react-intl: ^5.10.1
+    react-intl-translations-manager: ^5.0.3
+    react-redux: ^7.2.6
+    redux: ^4.1.2
+    rollup: ^3.2.5
+    rollup-plugin-copy: ^3.4.0
+    rollup-plugin-peer-deps-external: ^2.2.4
+    rollup-plugin-replace-imports-with-vars: ^1.1.0
+    rollup-plugin-terser: ^7.0.2
+    rollup-plugin-typescript2: ^0.34.1
+    rxjs: ^7.5.5
+    typescript: ^4.6.4
+  languageName: unknown
+  linkType: soft
 
 "codemirror-graphql@npm:^1.3.2":
   version: 1.3.2
@@ -8340,6 +8380,7 @@ __metadata:
     "@types/node": ^16.7.13
     "@types/react": ^18.0.22
     "@types/react-dom": ^18.0.7
+    codecommit-components: "workspace:^"
     nanoid: ^3.1.30
     prettier: ^2.5.1
     query-string: ^6.14.1
@@ -8354,7 +8395,6 @@ __metadata:
     rxjs: ^7.5.5
     sass: ^1.51.0
     typescript: ^4.6.4
-    uigoodies-components: "workspace:^"
     video.js: ^7.16.0
     web-vitals: ^2.1.0
   languageName: unknown
@@ -16462,46 +16502,6 @@ __metadata:
   checksum: 6898bb556319a38e9cf175e3628689347bd26fec15fc6b29fa38e0045af63075ff3fea4cf1fdba9db46c9f0cbf07f2348cd8844889dd31ebd288c29fe0d27e7a
   languageName: node
   linkType: hard
-
-"uigoodies-components@workspace:^, uigoodies-components@workspace:packages/gitlab-components":
-  version: 0.0.0-use.local
-  resolution: "uigoodies-components@workspace:packages/gitlab-components"
-  dependencies:
-    "@craftercms/studio-ui": ^1.0.0-rc.3
-    "@emotion/css": ^11.5.0
-    "@emotion/react": ^11.5.0
-    "@emotion/styled": ^11.3.0
-    "@formatjs/cli": ^2.13.12
-    "@mui/icons-material": ^5.10.9
-    "@mui/lab": ^5.0.0-alpha.65
-    "@mui/material": ^5.3.0
-    "@rollup/plugin-commonjs": ^23.0.2
-    "@rollup/plugin-json": ^5.0.1
-    "@rollup/plugin-node-resolve": ^15.0.1
-    "@rollup/plugin-replace": ^5.0.1
-    "@types/node": ^16.7.13
-    "@types/react": ^18.0.22
-    "@types/react-dom": ^18.0.7
-    npm-run-all: ^4.1.5
-    prettier: ^2.5.1
-    query-string: ^6.14.1
-    react: ^18.1.0
-    react-beautiful-dnd: ^13.1.1
-    react-dom: ^18.1.0
-    react-intl: ^5.10.1
-    react-intl-translations-manager: ^5.0.3
-    react-redux: ^7.2.6
-    redux: ^4.1.2
-    rollup: ^3.2.5
-    rollup-plugin-copy: ^3.4.0
-    rollup-plugin-peer-deps-external: ^2.2.4
-    rollup-plugin-replace-imports-with-vars: ^1.1.0
-    rollup-plugin-terser: ^7.0.2
-    rollup-plugin-typescript2: ^0.34.1
-    rxjs: ^7.5.5
-    typescript: ^4.6.4
-  languageName: unknown
-  linkType: soft
 
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2

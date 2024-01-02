@@ -1,16 +1,16 @@
 import { PluginDescriptor } from '@craftercms/studio-ui';
-import CreateMergeRequest from './components/CreateMergeRequest'
+import CreatePullRequest from './components/CreatePullRequest'
 
 const plugin: PluginDescriptor = {
   locales: undefined,
   scripts: undefined,
   stylesheets: undefined,
-  id: 'org.rd.plugin.gitlab',
+  id: 'org.rd.plugin.codecommit',
   widgets: {
-    'org.rd.plugin.gitlab.CreateMergeRequest': CreateMergeRequest  
+    'org.rd.plugin.codecommit.CreatePullRequest': CreatePullRequest  
   }
 };
 
-export { CreateMergeRequest };
+export { CreatePullRequest };
 
 export default plugin;

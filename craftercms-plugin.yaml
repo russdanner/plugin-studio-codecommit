@@ -6,15 +6,15 @@ descriptorVersion: 2
 # Describe the plugin
 plugin:
   type: site
-  id: org.rd.plugin.gitlab
-  name: Studio Gitlab Plugin
+  id: org.rd.plugin.codecommit
+  name: Studio CodeCommit Plugin
   tags:
     - studio
   version:
     major: 1
     minor: 0
     patch: 0
-  description: A plugin to adds some UI Gitlab wokflow to your studio
+  description: A plugin to adds some UI CodeCommit wokflow to your studio
   documentation: "https://raw.githubusercontent.com/russdanner/plugin-craftercms-uigoodies/master/README.md"
   website:
     name: Studio UI Goodies
@@ -30,7 +30,7 @@ plugin:
       email: russdanner@craftercms.com
       url: https://github.com/russdanner
   build:
-    id: cafebabe31300070207481d6ba87901d0b0271000
+    id: cafebabe31310070207481d6ba87901d0b0271000
     date: 2023-10-17T00:00:00Z
   license:
     name: MIT
@@ -49,9 +49,12 @@ plugin:
     - community
     - enterprise
   parameters:
-    - label: Gitlab Base URL
-      name: baseUrl
-      description: example https://gitlab.com
-    - label: GitLab API Key
-      name: apiKey
-      description: Gitlab API Key
+    - label: AWS API Key
+      name: awsApiKey
+      description: The AWS Api Key.
+    - label: AWS API Secret
+      name: awsApiSecret
+      description: The AWS API Secret.
+    - label: AWS Region
+      name: awsRegion
+      description: The AWS Region.

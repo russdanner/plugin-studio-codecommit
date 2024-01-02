@@ -1,5 +1,5 @@
 {
-  "name": "authoring-gitlab-plugin",
+  "name": "authoring-codecommit-plugin",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "",
@@ -8,7 +8,7 @@
   "private": true,
   "packageManager": "yarn@3.2.2",
   "workspaces": [
-    "packages/gitlab-components",
+    "packages/codecommit-components",
     "packages/cra"
   ],
   "scripts": {

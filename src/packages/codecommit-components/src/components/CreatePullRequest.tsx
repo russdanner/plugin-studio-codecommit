@@ -8,15 +8,15 @@ import ChecklistRtlRoundedIcon from '@mui/icons-material/ChecklistRtlRounded';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import { post } from '@craftercms/studio-ui/utils/ajax';
 
-export function CreateMergeRequest(props) {
+export function CreatePullRequest(props) {
   const {
     useIcon,
-    projectId,
+    repoName,
     sourceBranch,
     targetBranch,
-    mrTitle,
+    prTitle,
     // createMergeRequestLabel,
-    createAndApproveMergeRequestLabel
+    createAndMergePullRequestLabel
     // approveMergeRequestLabel,
     // rejectMergeRequestLabel,
     // listMergeRequestsLabel
@@ -27,24 +27,24 @@ export function CreateMergeRequest(props) {
   const [snackSuccess, setSnackSuccess] = React.useState(true);
   const [snackShow, setSnackShow] = React.useState(false);
   const [progressShow, setProgressShow] = React.useState(false);
-  const PLUGIN_SERVICE_BASE = '/studio/api/2/plugin/script/plugins/org/rd/plugin/gitlab/gitlab/devcontentops';
+  const PLUGIN_SERVICE_BASE = '/studio/api/2/plugin/script/plugins/org/rd/plugin/codecommit/codecommit/devcontentops';
 
   const handleCreateAndApproveMergeClick = (event: React.MouseEvent<HTMLElement>) => {
     setProgressShow(true);
-    let serviceUrl = `${PLUGIN_SERVICE_BASE}/create-and-approve-merge-request.json?siteId=${siteId}&projectId=${projectId}&title=${mrTitle}&sourceBranch=${sourceBranch}&targetBranch=${targetBranch}`;
+    let serviceUrl = `${PLUGIN_SERVICE_BASE}/create-and-merge-pull-request.json?siteId=${siteId}&repoName=${repoName}&title=${prTitle}&sourceBranch=${sourceBranch}&targetBranch=${targetBranch}`;
 
     post(serviceUrl).subscribe({
       next: (response) => {
         // sort our our attachments vs everything else
         let details = response.response.result;
         setSnackMessage(
-          `${createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : 'Pull'} completed successfully.`
+          `${createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull'} completed successfully.`
         );
         setSnackSuccess(true);
         setSnackShow(true);
       },
       error: (response) => {
-        setSnackMessage(`${createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : 'Pull'} failed.`);
+        setSnackMessage(`${createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull'} failed.`);
         setSnackSuccess(false);
         setSnackShow(true);
       }
@@ -61,7 +61,7 @@ export function CreateMergeRequest(props) {
       {useIcon ? (
         <Tooltip
           title={
-            createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : `Create and Approve Merge Request`
+            createAndMergePullRequestLabel ? createAndMergePullRequestLabel : `Create and Merge Pull Request`
           }
         >
           <IconButton size="small" onClick={handleCreateAndApproveMergeClick}>
@@ -70,7 +70,7 @@ export function CreateMergeRequest(props) {
         </Tooltip>
       ) : (
         <Button size="small" variant="text" onClick={handleCreateAndApproveMergeClick}>
-          {createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : `Create and Approve Merge Request`}
+          {createAndMergePullRequestLabel ? createAndMergePullRequestLabel : `Create and Merge Pull Request`}
         </Button>
       )}
 
@@ -92,4 +92,4 @@ export function CreateMergeRequest(props) {
   );
 }
 
-export default CreateMergeRequest;
+export default CreatePullRequest;

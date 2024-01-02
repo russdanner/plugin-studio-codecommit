@@ -27,10 +27,10 @@ function useActiveSiteId() {
   return useSelector((state) => state.sites.active);
 }
 
-function CreateMergeRequest(props) {
-    var useIcon = props.useIcon, projectId = props.projectId, sourceBranch = props.sourceBranch, targetBranch = props.targetBranch, mrTitle = props.mrTitle, 
+function CreatePullRequest(props) {
+    var useIcon = props.useIcon, repoName = props.repoName, sourceBranch = props.sourceBranch, targetBranch = props.targetBranch, prTitle = props.prTitle, 
     // createMergeRequestLabel,
-    createAndApproveMergeRequestLabel = props.createAndApproveMergeRequestLabel
+    createAndMergePullRequestLabel = props.createAndMergePullRequestLabel
     // approveMergeRequestLabel,
     // rejectMergeRequestLabel,
     // listMergeRequestsLabel
@@ -40,20 +40,20 @@ function CreateMergeRequest(props) {
     var _b = React.useState(true), snackSuccess = _b[0], setSnackSuccess = _b[1];
     var _c = React.useState(false), snackShow = _c[0], setSnackShow = _c[1];
     var _d = React.useState(false), progressShow = _d[0], setProgressShow = _d[1];
-    var PLUGIN_SERVICE_BASE = '/studio/api/2/plugin/script/plugins/org/rd/plugin/gitlab/gitlab/devcontentops';
+    var PLUGIN_SERVICE_BASE = '/studio/api/2/plugin/script/plugins/org/rd/plugin/codecommit/codecommit/devcontentops';
     var handleCreateAndApproveMergeClick = function (event) {
         setProgressShow(true);
-        var serviceUrl = "".concat(PLUGIN_SERVICE_BASE, "/create-and-approve-merge-request.json?siteId=").concat(siteId, "&projectId=").concat(projectId, "&title=").concat(mrTitle, "&sourceBranch=").concat(sourceBranch, "&targetBranch=").concat(targetBranch);
+        var serviceUrl = "".concat(PLUGIN_SERVICE_BASE, "/create-and-merge-pull-request.json?siteId=").concat(siteId, "&repoName=").concat(repoName, "&title=").concat(prTitle, "&sourceBranch=").concat(sourceBranch, "&targetBranch=").concat(targetBranch);
         post(serviceUrl).subscribe({
             next: function (response) {
                 // sort our our attachments vs everything else
                 response.response.result;
-                setSnackMessage("".concat(createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : 'Pull', " completed successfully."));
+                setSnackMessage("".concat(createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull', " completed successfully."));
                 setSnackSuccess(true);
                 setSnackShow(true);
             },
             error: function (response) {
-                setSnackMessage("".concat(createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : 'Pull', " failed."));
+                setSnackMessage("".concat(createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull', " failed."));
                 setSnackSuccess(false);
                 setSnackShow(true);
             }
@@ -64,9 +64,9 @@ function CreateMergeRequest(props) {
         setSnackShow(false);
     }
     return (React.createElement(React.Fragment, null,
-        useIcon ? (React.createElement(Tooltip, { title: createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : "Create and Approve Merge Request" },
+        useIcon ? (React.createElement(Tooltip, { title: createAndMergePullRequestLabel ? createAndMergePullRequestLabel : "Create and Merge Pull Request" },
             React.createElement(IconButton, { size: "small", onClick: handleCreateAndApproveMergeClick },
-                React.createElement(ChecklistRtlRoundedIcon, null)))) : (React.createElement(Button, { size: "small", variant: "text", onClick: handleCreateAndApproveMergeClick }, createAndApproveMergeRequestLabel ? createAndApproveMergeRequestLabel : "Create and Approve Merge Request")),
+                React.createElement(ChecklistRtlRoundedIcon, null)))) : (React.createElement(Button, { size: "small", variant: "text", onClick: handleCreateAndApproveMergeClick }, createAndMergePullRequestLabel ? createAndMergePullRequestLabel : "Create and Merge Pull Request")),
         React.createElement(Backdrop, { sx: { color: '#fff', zIndex: function (theme) { return theme.zIndex.drawer + 1; } }, open: progressShow },
             React.createElement(CircularProgress, { color: "inherit" }),
             React.createElement(Snackbar, { anchorOrigin: { vertical: 'top', horizontal: 'center' }, open: snackShow, autoHideDuration: 5000, onClose: handleSnackClose },
@@ -77,10 +77,10 @@ var plugin = {
     locales: undefined,
     scripts: undefined,
     stylesheets: undefined,
-    id: 'org.rd.plugin.gitlab',
+    id: 'org.rd.plugin.codecommit',
     widgets: {
-        'org.rd.plugin.gitlab.CreateMergeRequest': CreateMergeRequest
+        'org.rd.plugin.codecommit.CreatePullRequest': CreatePullRequest
     }
 };
 
-export { CreateMergeRequest, plugin as default };
+export { CreatePullRequest, plugin as default };
