@@ -43,6 +43,7 @@ public class CodeCommit {
         creds.region = pluginConfig.getString("awsRegion")
         creds.apiKey = pluginConfig.getString("awsApiKey")
         creds.apiSecret = pluginConfig.getString("awsApiSecret")
+        creds.useProfile = pluginConfig.getString("useLocal")
 
         return creds
     }
@@ -53,11 +54,18 @@ public class CodeCommit {
      */
     def createCodeCommitClient() {
 
-        if (this.codeCommitClient == null) {
+        if(this.codeCommitClient == null) {
             def creds = this.lookupAwsMediaCredentials()
-            AWSCredentialsProvider credProvider = (AWSCredentialsProvider) (new AWSStaticCredentialsProvider( new BasicAWSCredentials(creds.apiKey, creds.apiSecret)))
-            this.codeCommitClient = AWSCodeCommitClientBuilder.standard().withRegion(creds.region).withCredentials(credProvider).build()
+
+            def credProvider
+            if("true".equals(creds.useProfile)) {
+                credProvider = DefaultAWSCredentialsProviderChain.instance()
+            }
+            else {
+                credProvider = (AWSCredentialsProvider) (new AWSStaticCredentialsProvider( new BasicAWSCredentials(creds.apiKey, creds.apiSecret)))
+            }
         }
+           this.codeCommitClient = AWSCodeCommitClientBuilder.standard().withRegion(creds.region).withCredentials(credProvider).build()
 
         return this.codeCommitClient
     }
