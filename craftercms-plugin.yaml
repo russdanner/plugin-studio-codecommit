@@ -1,6 +1,20 @@
 # This file describes a plugin for use in CrafterCMS
 
 # The version of the format for this file
+#  parameters:
+#    - label: AWS API Key
+#      name: awsApiKey
+#      description: The AWS Api Key.
+#    - label: AWS API Secret
+#      name: awsApiSecret
+#      description: The AWS API Secret.
+#    - label: AWS Region
+#      name: awsRegion
+#      description: The AWS Region.
+#    - label: useProfileCredentials
+#       name: useProfileCredentials
+#       description: "true" to use profile's creds instead of specified creds
+
 descriptorVersion: 2
 
 # Describe the plugin
@@ -11,7 +25,7 @@ plugin:
   tags:
     - studio
   version:
-    major: 1
+    major: 2
     minor: 0
     patch: 0
   description: A plugin to adds some UI CodeCommit wokflow to your studio
@@ -30,7 +44,7 @@ plugin:
       email: russdanner@craftercms.com
       url: https://github.com/russdanner
   build:
-    id: cafebabe31310070207481d6ba87901d0b0271000
+    id: cafebabe31311070207481d6ba87901d0b0271000
     date: 2023-10-17T00:00:00Z
   license:
     name: MIT
@@ -45,16 +59,9 @@ plugin:
     - major: 4
       minor: 1
       patch: 2
+    - major: 4
+      minor: 1
+      patch: 3
   crafterCmsEditions:
     - community
     - enterprise
-  parameters:
-    - label: AWS API Key
-      name: awsApiKey
-      description: The AWS Api Key.
-    - label: AWS API Secret
-      name: awsApiSecret
-      description: The AWS API Secret.
-    - label: AWS Region
-      name: awsRegion
-      description: The AWS Region.
