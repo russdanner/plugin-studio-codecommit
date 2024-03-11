@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 
 import com.amazonaws.auth.*
 import com.amazonaws.auth.AWSCredentialsProvider
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain
 import com.amazonaws.services.codecommit.AWSCodeCommit
 import com.amazonaws.services.codecommit.AWSCodeCommitClientBuilder
 import com.amazonaws.services.codecommit.model.CreatePullRequestRequest
