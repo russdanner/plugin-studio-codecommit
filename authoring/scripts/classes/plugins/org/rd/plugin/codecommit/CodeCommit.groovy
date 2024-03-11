@@ -43,7 +43,7 @@ public class CodeCommit {
         creds.region = pluginConfig.getString("awsRegion")
         creds.apiKey = pluginConfig.getString("awsApiKey")
         creds.apiSecret = pluginConfig.getString("awsApiSecret")
-        creds.useProfile = pluginConfig.getString("useLocal")
+        creds.useProfile = pluginConfig.getString("useProfileCredentials")
 
         return creds
     }
