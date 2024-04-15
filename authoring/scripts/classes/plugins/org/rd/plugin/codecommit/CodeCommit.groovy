@@ -1,6 +1,5 @@
 package plugins.org.rd.plugin.codecommit
 
-@Grab(group='com.amazonaws', module='aws-java-sdk', version='1.12.629', initClass=false)
 @Grab(group='com.amazonaws', module='aws-java-sdk-codecommit', version='1.12.629', initClass=false)
 
 import org.slf4j.Logger
@@ -60,7 +59,8 @@ public class CodeCommit {
 
             def credProvider
             if("true".equals(creds.useProfile)) {
-                credProvider = DefaultAWSCredentialsProviderChain.instance()
+                //credProvider = DefaultAWSCredentialsProviderChain.instance()
+                credProvider = DefaultAWSCredentialsProviderChain.newInstance()
             }
             else {
                 credProvider = (AWSCredentialsProvider) (new AWSStaticCredentialsProvider( new BasicAWSCredentials(creds.apiKey, creds.apiSecret)))
