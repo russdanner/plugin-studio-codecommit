@@ -57,16 +57,13 @@ public class CodeCommit {
         if(this.codeCommitClient == null) {
             def creds = this.lookupAwsMediaCredentials()
 
-            def credProvider
             if("true".equals(creds.useProfile)) {
-                //credProvider = DefaultAWSCredentialsProviderChain.instance()
-                credProvider = DefaultAWSCredentialsProviderChain.newInstance()
-            }
-            else {
-                credProvider = (AWSCredentialsProvider) (new AWSStaticCredentialsProvider( new BasicAWSCredentials(creds.apiKey, creds.apiSecret)))
+                this.codeCommitClient = AWSCodeCommitClientBuilder.standard().withRegion(creds.region).build()
+            } else {
+                def credProvider = (AWSCredentialsProvider) (new AWSStaticCredentialsProvider( new BasicAWSCredentials(creds.apiKey, creds.apiSecret)))
+                this.codeCommitClient = AWSCodeCommitClientBuilder.standard().withRegion(creds.region).withCredentials(credProvider).build()
             }
         }
-           this.codeCommitClient = AWSCodeCommitClientBuilder.standard().withRegion(creds.region).withCredentials(credProvider).build()
 
         return this.codeCommitClient
     }
