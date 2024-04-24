@@ -25,7 +25,7 @@ curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/
         "awsApiSecret": "A SECRET",
         "awsRegion": "us-east-1"
     }
-}
+}'
 
 ```
 OR to use profile credentials
@@ -38,10 +38,10 @@ curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/
   "siteId": "editorial",
   "path": "/home/russdanner/code/plugin-studio-codecommit",
   "parameters": {  
-        "useProfileCredentials": "true"
+        "useProfileCredentials": "true",
         "awsRegion": "us-east-1"
     }
-}
+}'
 
 ```
 
