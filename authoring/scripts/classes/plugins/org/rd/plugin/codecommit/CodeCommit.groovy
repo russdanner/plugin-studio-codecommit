@@ -13,7 +13,7 @@ import com.amazonaws.services.codecommit.AWSCodeCommitClientBuilder
 import com.amazonaws.services.codecommit.model.CreatePullRequestRequest
 import com.amazonaws.services.codecommit.model.ListPullRequestsRequest
 import com.amazonaws.services.codecommit.model.Target
-import com.amazonaws.services.codecommit.model.MergePullRequestByFastForwardRequest
+import com.amazonaws.services.codecommit.model.MergePullRequestByThreeWayRequest
 
 /**
  * API service wrapper for AWS CodeCommit
@@ -108,11 +108,11 @@ public class CodeCommit {
     def mergePullRequest(repoId, id) {
         def client = this.createCodeCommitClient()
 
-        def request = new MergePullRequestByFastForwardRequest()
+        def request = new MergePullRequestByThreeWayRequest()
         request.setRepositoryName(repoId)
         request.setPullRequestId(id)
-
-        def result = client.mergePullRequestByFastForward(request)
+ 
+        def result = client.mergePullRequestByThreeWay(request)
 
         return result
     }
