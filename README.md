@@ -23,25 +23,13 @@ curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/
   "parameters": {  
         "awsApiKey": "A KEY",
         "awsApiSecret": "A SECRET",
+        "useProfileCredentials": "false",
         "awsRegion": "us-east-1"
     }
 }'
 
 ```
-OR to use profile credentials
-
-```bash
-curl --location --request POST 'http://SERVER_AND_PORT/studio/api/2/marketplace/copy' \
---header 'Authorization: Bearer THE_JWT_TOKEN_FOR_STUDIO' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "siteId": "editorial",
-  "path": "/home/russdanner/code/plugin-studio-codecommit",
-  "parameters": {  
-        "useProfileCredentials": "true",
-        "awsRegion": "us-east-1"
-    }
-}'
+If `useProfileCredentials` is `true` supply dummy values to the key and secret.
 
 ```
 
