@@ -84,6 +84,20 @@ public class CodeCommit {
     }
 
     /**
+     * Get diff between two branches
+     */
+    def getDiff(repoId, sourceBranch, targetBranch) {
+        def client = this.createCodeCommitClient()
+
+        // Check for differences between source and target branches
+        def response = client.getDifferences(new GetDifferencesRequest()
+                .withRepositoryName(repoId)
+                .withBeforeCommitSpecifier(targetBranch)
+                .withAfterCommitSpecifier(sourceBranch))
+        return response.differences
+    }
+
+    /**
      * Create a Pull request
      */
     def createPullRequest(repoId, title, sourceBranch, targetBranch) {
@@ -122,16 +136,8 @@ public class CodeCommit {
      * Create and approve a pull request
      */
     def createAndMergePullRequest(repoId, title, sourceBranch, targetBranch) {
-        def client = this.createCodeCommitClient()
-
-        // Check for differences between source and target branches
-        def differences = client.getDifferences(new GetDifferencesRequest()
-                .withRepositoryName(repoId)
-                .withBeforeCommitSpecifier(targetBranch)
-                .withAfterCommitSpecifier(sourceBranch))
-
-        // If there are no differences, return without creating a pull request
-        if (!differences.differences) {
+        def diff = getDiff(repoId, sourceBranch, targetBranch)
+        if (!diff) {
            // System.out.println("No differences between source and target branches. Skipping pull request creation.")
             return
         }
