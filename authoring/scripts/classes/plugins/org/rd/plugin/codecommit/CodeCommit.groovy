@@ -14,6 +14,7 @@ import com.amazonaws.services.codecommit.model.CreatePullRequestRequest
 import com.amazonaws.services.codecommit.model.ListPullRequestsRequest
 import com.amazonaws.services.codecommit.model.Target
 import com.amazonaws.services.codecommit.model.MergePullRequestByThreeWayRequest
+import com.amazonaws.services.codecommit.model.GetDifferencesRequest
 
 /**
  * API service wrapper for AWS CodeCommit
@@ -82,7 +83,21 @@ public class CodeCommit {
         return result
     }
 
-    /** 
+    /**
+     * Get diff between two branches
+     */
+    def getDiff(repoId, sourceBranch, targetBranch) {
+        def client = this.createCodeCommitClient()
+
+        // Check for differences between source and target branches
+        def response = client.getDifferences(new GetDifferencesRequest()
+                .withRepositoryName(repoId)
+                .withBeforeCommitSpecifier(targetBranch)
+                .withAfterCommitSpecifier(sourceBranch))
+        return response.differences
+    }
+
+    /**
      * Create a Pull request
      */
     def createPullRequest(repoId, title, sourceBranch, targetBranch) {
@@ -111,7 +126,7 @@ public class CodeCommit {
         def request = new MergePullRequestByThreeWayRequest()
         request.setRepositoryName(repoId)
         request.setPullRequestId(id)
- 
+
         def result = client.mergePullRequestByThreeWay(request)
 
         return result
@@ -121,6 +136,12 @@ public class CodeCommit {
      * Create and approve a pull request
      */
     def createAndMergePullRequest(repoId, title, sourceBranch, targetBranch) {
+        def diff = getDiff(repoId, sourceBranch, targetBranch)
+        if (!diff) {
+           // System.out.println("No differences between source and target branches. Skipping pull request creation.")
+            return
+        }
+
         def createResult = createPullRequest(repoId, title, sourceBranch, targetBranch)
         //System.out.println("Created Merge Request: ${createResult.pullRequest.pullRequestId}")
 
