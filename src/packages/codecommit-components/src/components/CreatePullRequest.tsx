@@ -35,12 +35,15 @@ export function CreatePullRequest(props) {
 
     post(serviceUrl).subscribe({
       next: (response) => {
-        // sort our our attachments vs everything else
-        let details = response.response.result;
-        setSnackMessage(
-          `${createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull'} completed successfully.`
-        );
-        setSnackSuccess(true);
+        if (response.response.result == null) {
+          setSnackMessage('There are no differences between source and destination branch');
+          setSnackSuccess(false);
+        } else {
+          setSnackMessage(
+            `${createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull'} completed successfully.`
+          );
+          setSnackSuccess(true);
+        }
         setSnackShow(true);
       },
       error: (response) => {
