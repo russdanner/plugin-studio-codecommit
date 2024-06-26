@@ -94,6 +94,11 @@ public class CodeCommit {
                 .withRepositoryName(repoId)
                 .withBeforeCommitSpecifier(targetBranch)
                 .withAfterCommitSpecifier(sourceBranch))
+
+        // Log the response and differences
+        logger.info("Response: $response")
+        logger.info("Differences: ${response.differences}")
+
         return response.differences
     }
 
@@ -138,7 +143,7 @@ public class CodeCommit {
     def createAndMergePullRequest(repoId, title, sourceBranch, targetBranch) {
         def diff = getDiff(repoId, sourceBranch, targetBranch)
         if (!diff) {
-           // System.out.println("No differences between source and target branches. Skipping pull request creation.")
+            logger.info("No differences found between {} and {} in repo {}", sourceBranch, targetBranch, repoId)
             return
         }
 

@@ -46,10 +46,14 @@ function CreatePullRequest(props) {
         var serviceUrl = "".concat(PLUGIN_SERVICE_BASE, "/create-and-merge-pull-request.json?siteId=").concat(siteId, "&repoName=").concat(repoName, "&title=").concat(prTitle, "&sourceBranch=").concat(sourceBranch, "&targetBranch=").concat(targetBranch);
         post(serviceUrl).subscribe({
             next: function (response) {
-                // sort our our attachments vs everything else
-                response.response.result;
-                setSnackMessage("".concat(createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull', " completed successfully."));
-                setSnackSuccess(true);
+                if (response.response.result == null) {
+                    setSnackMessage('There are no differences between source and destination branch');
+                    setSnackSuccess(false);
+                }
+                else {
+                    setSnackMessage("".concat(createAndMergePullRequestLabel ? createAndMergePullRequestLabel : 'Pull', " completed successfully."));
+                    setSnackSuccess(true);
+                }
                 setSnackShow(true);
             },
             error: function (response) {
